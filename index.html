@@ -106,13 +106,11 @@
     }
 
     function getContext() {
-      if (liff.getContext() != null) {
-        document.getElementById("type").append(liff.getContext().type)
-        document.getElementById("viewType").append(liff.getContext().viewType)
-        document.getElementById("utouId").append(liff.getContext().utouId)
-        document.getElementById("roomId").append(liff.getContext().roomId)
-        document.getElementById("groupId").append(liff.getContext().groupId)
-      }
+      document.getElementById("type").append(liff.getContext().type) //สนทนาอยู่แบบไหน
+      document.getElementById("viewType").append(liff.getContext().viewType) //เลือก liff 3 แบบ
+      document.getElementById("utouId").append(liff.getContext().utouId) //Id ของ Liff
+      document.getElementById("roomId").append(liff.getContext().roomId) //room Id ของห้อง
+      document.getElementById("groupId").append(liff.getContext().groupId) //grop ไหนเปิด Link
     }
 
     async function getUserProfile() {
@@ -122,6 +120,7 @@
       document.getElementById("statusMessage").append(profile.statusMessage)
       document.getElementById("displayName").append(profile.displayName)
       document.getElementById("decodedIDToken").append(liff.getDecodedIDToken().email)
+      //decodedIDToken เอามาจาก openId
     }
     
     function getEnvironment() {
@@ -143,9 +142,9 @@
       liff.ready.then(() => {
         document.getElementById("isLoggedIn").append(liff.isLoggedIn())
         if (liff.isLoggedIn()) {
-          getEnvironment()
-          getUserProfile()
-          getContext()
+          getEnvironment() //Check Device
+          getUserProfile() //Check Profile
+          getContext() //Check RoomId 
           getFriendship()
           createUniversalLink()
         } else {
